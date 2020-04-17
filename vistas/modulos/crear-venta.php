@@ -158,17 +158,22 @@
                   </table>
                 </div>
               </div>
-              <button type="submit">Enviar</button>
+              
   
-              <?php 
+              
 
-                  $crearVenta = new ControladorCrearVenta();
-                  $crearVenta -> ctrCrearVenta();
-
-               ?>
-
-          </form>
+          
         </div>
+        <div class="card-footer d-flex justify-content-end">
+          <button type="submit" class="btn btn-lg btn-success">Crear Venta</button>
+        </div>
+        <?php 
+
+        $crearVenta = new ControladorCrearVenta();
+        $crearVenta -> ctrCrearVenta();
+
+        ?>
+        </form>
       </div>
     </div>
 
