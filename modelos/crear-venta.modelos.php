@@ -52,8 +52,9 @@ class ModeloCrearVenta{
 	// Crear Venta
 	static public function mdlCrearVenta($tabla,$datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_cliente,fecha,hora,iva,subtotal,total) VALUES (:id_cliente,:fecha,:hora,:iva,:subtotal,:total)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_usuario,id_cliente,fecha,hora,iva,subtotal,total) VALUES (:id_usuario,:id_cliente,:fecha,:hora,:iva,:subtotal,:total)");
 
+		$stmt -> bindParam(":id_usuario",$datos["id_usuario"],PDO::PARAM_INT);
 		$stmt -> bindParam(":id_cliente",$datos["id_cliente"],PDO::PARAM_INT);
 		$stmt -> bindParam(":fecha",$datos["fecha"],PDO::PARAM_STR);
 		$stmt -> bindParam(":hora",$datos["hora"],PDO::PARAM_STR);

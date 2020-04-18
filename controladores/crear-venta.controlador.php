@@ -19,7 +19,8 @@ class ControladorCrearVenta{
 
 			$tabla = "venta";
 
-			$datos = array('id_cliente' => $_POST["nuevoCliente"],
+			$datos = array('id_usuario' => $_POST["nuevoVendedor"],
+						   'id_cliente' => $_POST["nuevoCliente"],
 						   'fecha' => $_POST["nuevoFecha"],
 						   'hora' => $_POST["nuevoHora"],
 						   'iva' => $_POST["nuevoIva"],

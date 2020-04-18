@@ -3,6 +3,29 @@ function roundToTwo(num) {
     return +(Math.round(num + "e+2")  + "e-2");
 }
 
+window.onload = function(){
+
+	// Reloj
+	setInterval(function reloj(){
+		var date = new Date();
+		var hora = date.getHours();
+		var minutos = date.getMinutes();
+		var segundos = date.getSeconds();
+
+		if (minutos<10) {
+			minutos = "0"+minutos;
+		}
+
+		if (segundos<10) {
+			segundos = "0"+segundos;
+		}
+
+		var tiempo = hora+":"+minutos+":"+segundos;
+		$("#nuevoHora").attr('value', tiempo);
+	},1000)
+
+}
+
 /*Data Table*/
 $(".tablaVentas").DataTable({
 	"ajax": "ajax/datatable-productos-crear-venta.ajax.php",
@@ -124,6 +147,7 @@ $(document).on('click', '.btnAgregarProducto', function(event) {
 							'</div>'+
 							'</div>');
 						totalPrecios();
+						
 					}
 				});
 			}
@@ -134,7 +158,7 @@ $(document).on('click', '.btnAgregarProducto', function(event) {
 
 
 
-// Quitar Producto
+// Quitar Producto 
 
 var idQuitarProducto = [];
 localStorage.removeItem("quitarProducto");
@@ -164,8 +188,6 @@ $(document).on('click', '.quitarProducto', function(event) {
 		totalPrecios();
 	}
 
-	console.log($(".nuevoProducto").children().length);
-
 });
 
 // Cuando se navega por la tabla
@@ -185,7 +207,6 @@ $(document).on('change', '.cantidadProducto', function(event) {
 	var precio = Number($(this).attr('precio'));
 	var cantidad = Number($(this).val());
 	var stock = Number($(this).attr('stock'));
-	console.log("stock", stock);
 
 	if (cantidad>stock || cantidad<=0) {
 		$(this).val(1);
@@ -242,7 +263,6 @@ function listaProductos(){
 	var cantidad = $(".cantidadProducto");
 
 	lista = [];
-	console.log("lista", lista);
 
 	for (var i = 0; i < producto.length; i++) {
 		lista.push({"id":$(producto[i]).attr('idProducto'),

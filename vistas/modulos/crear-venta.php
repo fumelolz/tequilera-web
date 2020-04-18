@@ -35,14 +35,16 @@
                 $item = null;
                 $valor = null;
 
-                $ventas = ControladorCrearVenta::ctrMostrarVentas($item,$valor);
+                $ventas = ControladorCrearVenta::ctrMostrarVentas($item,$valor);   
 
-                foreach ($ventas as $key => $value) {
+                if (!$ventas) {
+                  $id_venta = 1;
+                }else{
+                  foreach ($ventas as $key => $value) {
 
+                  }
+                  $id_venta = $value["id_venta"]+1;
                 }
-
-                $id_venta = $value["id_venta"]+1;
-
 
                 ?>
                 <div class="input-group">
@@ -51,6 +53,16 @@
                   </div> 
                   <input type="text" class="form-control" id="nuevoId" name="nuevoId" value="<?php echo $id_venta; ?>" required readonly>
                 </div>
+              </div>
+            </div>
+
+            <div class="form-group mb-3">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="far fa-user"></i></span>
+                </div>
+                <input type="hidden"id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION["id_usuario"]; ?>" required readonly>
+                <input type="text" class="form-control" value="<?php echo $_SESSION["usuario"]; ?>" readonly>
               </div>
             </div>
 
@@ -102,7 +114,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-clock"></i></span>
                 </div>
-                <input type="text" class="form-control" id="nuevoHora" name="nuevoHora" value="<?php echo $time; ?>" required readonly>
+                <input type="text" class="form-control" id="nuevoHora" name="nuevoHora" value="" required readonly>
               </div>
             </div>
 
@@ -165,7 +177,7 @@
           
         </div>
         <div class="card-footer d-flex justify-content-end">
-          <button type="submit" class="btn btn-lg btn-success">Crear Venta</button>
+          <button type="submit" class="btn btn-lg btn-success btnCrearVenta">Crear Venta</button>
         </div>
         <?php 
 
@@ -184,9 +196,9 @@
           <table class="table table-bordered table-striped tablaVentas" style="width: 100%;">
             <thead>
               <tr>
-                <th style="width: 10px;">#</th>
+                <th style="width: 8px;">#</th>
                 <th>Descripción</th>
-                <th>Presentación</th>
+                <th style="width: 10px;">Presentación</th>
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Foto</th>
