@@ -62,14 +62,14 @@ $(".tablaVentas").DataTable({
 });
 
 // Verificar que todos los datos json esten correctos, muestra todos los productos desde ajax
-// $.ajax({
+$.ajax({
 
-// 	url: "ajax/datatable-productos-crear-venta.ajax.php",
-// 	success:function(reply){
-// 		console.log(reply);
-// 	}
+	url: "ajax/datatable-productos-crear-venta.ajax.php",
+	success:function(reply){
+		console.log(reply);
+	}
 
-// });
+});
 
 // Obtener Producto
 $(document).on('click', '.btnAgregarProducto', function(event) {
@@ -231,6 +231,7 @@ $(document).on('change', '.cantidadProducto', function(event) {
 function totalPrecios(){
 	var precioItem = $(".precioProducto");
 	arraySuma = [];
+	console.log("arraySuma", arraySuma);
 	
 	for (var i = 0; i < precioItem.length; i++) {
 		arraySuma.push(Number($(precioItem[i]).val()));
@@ -243,6 +244,7 @@ function totalPrecios(){
 	}
 
 	sumaTotalPrecio = arraySuma.reduce(sumaArrayPrecios)
+	console.log("sumaTotalPrecio", sumaTotalPrecio);
 	$("#nuevoSubTotalVenta").attr('value', sumaTotalPrecio);
 
 	agregarIva();

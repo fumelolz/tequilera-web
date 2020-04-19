@@ -20,77 +20,85 @@
 
   <!-- Main content -->
   <section class="content">
-  <div class="row">
-    <div class="col-md-5 col-sm-12">
-      <div class="bg-success" style="height: 4px;"></div>
-      <div class="card">
-        <div class="card-body p-2">
+    <div class="row">
+      <div class="col-md-5 col-sm-12">
+        <div class="bg-success" style="height: 4px;"></div>
+        <div class="card">
+          <div class="card-body p-2">
 
-          <form method="POST">
 
-            <div class="row">
-              <div class="form-group col-md-3">
-                <?php 
+            <form method="POST">
 
-                $item = null;
-                $valor = null;
+              <div class="row">
+                <div class="form-group col-md-3">
+                  <?php 
 
-                $ventas = ControladorCrearVenta::ctrMostrarVentas($item,$valor);   
+                  $item = null;
+                  $valor = null;
 
-                if (!$ventas) {
-                  $id_venta = 1;
-                }else{
-                  foreach ($ventas as $key => $value) {
+                  $ventas = ControladorCrearVenta::ctrMostrarVentas($item,$valor);   
 
+                  if (!$ventas) {
+                    $id_venta = 1;
+                  }else{
+                    foreach ($ventas as $key => $value) {
+
+                    }
+                    $id_venta = $value["id_venta"]+1;
                   }
-                  $id_venta = $value["id_venta"]+1;
-                }
 
-                ?>
+                  ?>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div> 
+                    <input type="text" class="form-control" id="nuevoId" name="nuevoId" value="<?php echo $id_venta; ?>" required readonly>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                  </div> 
-                  <input type="text" class="form-control" id="nuevoId" name="nuevoId" value="<?php echo $id_venta; ?>" required readonly>
+                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                  </div>
+                  <input type="hidden"id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION["id_usuario"]; ?>" required readonly>
+                  <input type="text" class="form-control" value="<?php echo $_SESSION["usuario"]; ?>" readonly>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group mb-3">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="far fa-user"></i></span>
+              <!-- <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Buscar Cliente</span>
+                  </div>
+                  <input type="text" class="form-control">
                 </div>
-                <input type="hidden"id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $_SESSION["id_usuario"]; ?>" required readonly>
-                <input type="text" class="form-control" value="<?php echo $_SESSION["usuario"]; ?>" readonly>
-              </div>
-            </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-users"></i></span>
-              </div>
-              <select class="form-control" name="nuevoCliente" id="nuevoCliente" required>
-                <option value="">Selecciónar cliente</option>
-                <?php 
- 
-                $item = null;
-                $valor = null;
-
-                $clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
-
-                foreach ($clientes as $key => $value) {
-                  echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
-                }
-
-                ?>
-              </select>
-         <!-- <div class="input-group-append">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addClientModal">Agregar cliente</button>
+                <div class="livesearch"></div>
               </div> -->
-            </div>
-          </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-users"></i></span>
+                  </div>
+                  <select class="form-control" name="nuevoCliente" id="nuevoCliente" required>
+                    <option value="">Selecciónar cliente</option>
+                    <?php 
+                    
+                    $item = null;
+                    $valor = null;
+
+                    $clientes = ControladorClientes::ctrMostrarClientes($item,$valor);
+
+                    foreach ($clientes as $key => $value) {
+                      echo '<option value="'.$value["id_cliente"].'">'.$value["nombre"].'</option>';
+                    }
+
+                    ?>
+                  </select>
+                </div>
+              </div> 
 
           <div class="row">
             <?php 
@@ -100,8 +108,8 @@
             $date = date('Y-m-d');
             $time = date('H:i:s');
 
-             ?>
-             <div class="form-group col-md-6">
+            ?>
+            <div class="form-group col-md-6">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
@@ -129,55 +137,55 @@
           <hr>
 
           <div class="row">
-                <div class="col-12">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>IVA</th>
-                        <th>SubTotal</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style="width: 33.333333%">
-                          <div class="input-group">
-                            <input type="number" min="0" class="form-control" id="nuevoIva" name="nuevoIva" value="16" required>
-                            <div class="input-group-append">
-                              <span class="input-group-text"><i class="fas fa-percent"></i></span>
-                            </div>
-                          </div>
-                        </td>
-                        <td style="width: 33.333333%">
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                            </div>
-                            <input type="text" class="form-control" total="" id="nuevoSubTotalVenta" name="nuevoSubTotalVenta" required readonly>
-                          </div>
-                        </td>
-                        <td style="width: 33.333333%">
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
-                            </div>
-                            <input type="hidden" id="listaProductos" name="listaProductos" value="">
-                            <input type="text" class="form-control" total="" id="nuevoTotalVenta" name="nuevoTotalVenta" value="" required readonly>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-  
-              
+            <div class="col-12">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>IVA</th>
+                    <th>SubTotal</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="width: 33.333333%">
+                      <div class="input-group">
+                        <input type="number" min="0" class="form-control" id="nuevoIva" name="nuevoIva" value="16" required>
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fas fa-percent"></i></span>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="width: 33.333333%">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+                        <input type="text" class="form-control" total="" id="nuevoSubTotalVenta" name="nuevoSubTotalVenta" required readonly>
+                      </div>
+                    </td>
+                    <td style="width: 33.333333%">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                        </div>
+                        <input type="hidden" id="listaProductos" name="listaProductos" value="">
+                        <input type="text" class="form-control" total="" id="nuevoTotalVenta" name="nuevoTotalVenta" value="" required readonly>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          
+          
 
           
         </div>
         <div class="card-footer d-flex justify-content-end">
-          <button type="submit" class="btn btn-lg btn-success btnCrearVenta">Crear Venta</button>
+          <button type="submit" class="btn btn-lg btn-success btnCrearVenta"  >Crear Venta</button>
         </div>
         <?php 
 
@@ -185,33 +193,33 @@
         $crearVenta -> ctrCrearVenta();
 
         ?>
-        </form>
-      </div>
-    </div>
-
-    <div class="col-md-7 col-sm-12">
-      <div class="bg-warning" style="height: 4px;"></div>
-      <div class="card">
-        <div class="card-body">
-          <table class="table table-bordered table-striped tablaVentas" style="width: 100%;">
-            <thead>
-              <tr>
-                <th style="width: 8px;">#</th>
-                <th>Descripción</th>
-                <th style="width: 10px;">Presentación</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Foto</th>
-                <th>Acciónes</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 
-  </section>
-  <!-- /.content -->
+  <div class="col-md-7 col-sm-12">
+    <div class="bg-warning" style="height: 4px;"></div>
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-bordered table-striped tablaVentas" style="width: 100%;">
+          <thead>
+            <tr>
+              <th style="width: 8px;">#</th>
+              <th>Descripción</th>
+              <th style="width: 10px;">Presentación</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Foto</th>
+              <th>Acciónes</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</section>
+<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
