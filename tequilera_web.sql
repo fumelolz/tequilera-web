@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2020 a las 23:13:23
+-- Tiempo de generación: 20-04-2020 a las 01:25:38
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -132,15 +132,37 @@ CREATE TABLE `detail_t_producto` (
 
 INSERT INTO `detail_t_producto` (`id_producto`, `id_transf_producto`, `cantidad`) VALUES
 (1, 1, 25),
+(1, 18, 5),
+(1, 19, 20),
+(1, 24, 25),
+(1, 25, 25),
+(1, 30, 600),
 (2, 3, 30),
 (2, 4, 28),
+(2, 20, 2),
+(3, 30, 600),
 (4, 7, 90),
 (4, 8, 40),
+(4, 21, 50),
+(5, 30, 800),
 (6, 5, 5),
 (6, 6, 90),
+(6, 22, 95),
+(6, 24, 650),
+(6, 26, 650),
+(6, 30, 150),
 (8, 1, 22),
 (8, 2, 10),
-(14, 9, 50);
+(8, 23, 12),
+(8, 24, 10),
+(8, 25, 10),
+(8, 27, 90),
+(8, 28, 80),
+(8, 29, 10),
+(8, 30, 90),
+(10, 30, 500),
+(14, 9, 50),
+(14, 23, 50);
 
 -- --------------------------------------------------------
 
@@ -159,10 +181,36 @@ CREATE TABLE `detail_venta` (
 --
 
 INSERT INTO `detail_venta` (`id_venta`, `id_producto`, `cantidad`) VALUES
-(1, 1, 22),
-(1, 10, 23),
-(4, 1, 88),
-(4, 2, 44);
+(1, 1, 1),
+(1, 2, 1),
+(4, 1, 2),
+(5, 1, 1),
+(6, 2, 1),
+(6, 4, 1),
+(7, 1, 1),
+(7, 2, 1),
+(8, 1, 1),
+(9, 1, 6),
+(10, 1, 3),
+(11, 1, 3),
+(12, 1, 1),
+(13, 1, 3),
+(14, 1, 5),
+(14, 2, 1),
+(16, 1, 5),
+(17, 1, 5),
+(18, 1, 20),
+(19, 2, 2),
+(20, 4, 50),
+(21, 6, 95),
+(22, 8, 12),
+(22, 14, 50),
+(23, 1, 25),
+(23, 6, 650),
+(23, 8, 10),
+(24, 6, 650),
+(25, 8, 80),
+(26, 8, 10);
 
 -- --------------------------------------------------------
 
@@ -306,7 +354,7 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `descripcion`, `presentacion`, `precio`, `img`) VALUES
-(1, 'Río negro blanco', '750ml editado', '200', 'vistas/img/productos/Río negro blanco/493.jpg'),
+(1, 'Río negro blanco', '750ml', '200', 'vistas/img/productos/Río negro blanco/493.jpg'),
 (2, 'Río negro reposado', '750ml', '250', 'vistas/img/productos/Río negro reposado/793.jpg'),
 (3, 'Querida', '750ml', '250', NULL),
 (4, 'Malquerida', '750ml', '300', NULL),
@@ -445,7 +493,28 @@ INSERT INTO `transferencia_producto` (`id_transf_producto`, `fecha`, `hora`, `cl
 (6, '2020-04-12', '21:21:00', 3, 1),
 (7, '2020-04-12', '22:20:00', 3, 1),
 (8, '2020-04-12', '22:21:00', 4, 1),
-(9, '2020-04-16', '17:22:00', 3, 1);
+(9, '2020-04-16', '17:22:00', 3, 1),
+(10, '2020-04-18', '13:10:33', 4, 1),
+(11, '2020-04-18', '13:15:03', 4, 1),
+(12, '2020-04-18', '13:18:16', 4, 1),
+(13, '2020-04-18', '13:18:54', 4, 1),
+(14, '2020-04-18', '13:19:29', 4, 1),
+(15, '2020-04-18', '14:04:54', 4, 1),
+(16, '2020-04-18', '14:07:11', 4, 1),
+(17, '2020-04-18', '14:10:54', 4, 1),
+(18, '2020-04-18', '16:05:48', 4, 1),
+(19, '2020-04-18', '16:21:52', 4, 1),
+(20, '2020-04-18', '16:22:04', 4, 1),
+(21, '2020-04-18', '16:23:21', 4, 1),
+(22, '2020-04-18', '17:19:56', 4, 1),
+(23, '2020-04-18', '17:20:10', 4, 1),
+(24, '2020-04-18', '19:10:12', 3, 1),
+(25, '2020-04-18', '17:40:49', 4, 1),
+(26, '2020-04-18', '18:07:17', 4, 1),
+(27, '2020-04-19', '11:10:12', 3, 1),
+(28, '2020-04-19', '00:56:46', 4, 1),
+(29, '2020-04-19', '14:08:09', 4, 1),
+(30, '2020-04-19', '18:04:12', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -493,7 +562,7 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `usuario`, `passwd`, `tipo`, `img
 (5, 'lol', 'grast', 'zevur', 1, '', 0, '0000-00-00 00:00:00', '2020-04-16 17:43:40'),
 (10, NULL, 'admin', 'admin', 1, NULL, 1, '2020-03-10 20:08:23', '2020-04-16 17:39:59'),
 (12, 'Yolanda Urcina Macedo', 'yolanda', 'yolanda', 1, 'vistas/img/usuarios/yolanda/108.jpg', 1, '2020-03-11 09:17:46', '2020-04-16 17:39:58'),
-(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-17 16:07:59', '2020-04-17 16:07:59'),
+(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-19 14:07:50', '2020-04-19 14:07:50'),
 (20, 'Faustino Magadan', 'faustino', '$2a$07$asxx54ahjppf45sd87a5auMnvguyEG4TUXMS0lgfGS8BokSElr81e', 2, NULL, 1, '2020-03-14 14:44:45', '2020-04-16 17:39:57'),
 (21, 'Juan Carlos Magadan', 'carlos', '$2a$07$asxx54ahjppf45sd87a5auXaW5n/KLY/bEvEkjrWiw6hTlwjyTGja', 1, NULL, 1, NULL, '2020-04-16 17:39:56'),
 (22, 'Juan Carlos Magadan', 'ironman32', '$2a$07$asxx54ahjppf45sd87a5auGD.G7H8Smda9QuzdEJEiZ.SRUJDwAN.', 1, 'vistas/img/usuarios/ironman32/693.jpg', 1, NULL, '2020-04-16 17:39:55'),
@@ -507,11 +576,12 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `usuario`, `passwd`, `tipo`, `img
 
 CREATE TABLE `venta` (
   `id_venta` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   `iva` int(11) DEFAULT NULL,
-  `subtotal` decimal(10,0) DEFAULT NULL,
+  `subtotal` decimal(10,0) NOT NULL,
   `total` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -519,12 +589,33 @@ CREATE TABLE `venta` (
 -- Volcado de datos para la tabla `venta`
 --
 
-INSERT INTO `venta` (`id_venta`, `id_cliente`, `fecha`, `hora`, `iva`, `subtotal`, `total`) VALUES
-(1, 4, '2020-04-17', '09:08:08', 16, '255', '300'),
-(2, 6, '2020-04-17', '12:28:18', 16, '450', '522'),
-(3, 7, '2020-04-17', '12:53:25', 16, '500', '580'),
-(4, 5, '2020-04-17', '13:41:39', 16, '1050', '1218'),
-(5, 5, '2020-04-17', '14:22:26', 16, '1300', '1508');
+INSERT INTO `venta` (`id_venta`, `id_usuario`, `id_cliente`, `fecha`, `hora`, `iva`, `subtotal`, `total`) VALUES
+(1, 18, 4, '2020-04-17', '21:18:59', 16, '450', '522'),
+(2, 18, 4, '2020-04-17', '21:33:22', 16, '0', '0'),
+(3, 18, 4, '2020-04-17', '21:33:50', 16, '0', '0'),
+(4, 18, 5, '2020-04-17', '22:36:56', 16, '400', '464'),
+(5, 18, 5, '2020-04-18', '00:02:45', 16, '200', '232'),
+(6, 18, 7, '2020-04-18', '00:04:00', 16, '0', '0'),
+(7, 18, 6, '2020-04-18', '13:08:29', 16, '450', '522'),
+(8, 18, 6, '2020-04-18', '13:09:52', 16, '200', '232'),
+(9, 18, 6, '2020-04-18', '13:10:33', 16, '1200', '1392'),
+(10, 18, 5, '2020-04-18', '13:15:03', 16, '600', '696'),
+(11, 18, 5, '2020-04-18', '13:18:16', 16, '600', '696'),
+(12, 18, 4, '2020-04-18', '13:18:54', 16, '200', '232'),
+(13, 18, 5, '2020-04-18', '13:19:29', 16, '600', '696'),
+(14, 18, 5, '2020-04-18', '14:04:54', 16, '1000', '1160'),
+(15, 18, 4, '2020-04-18', '14:07:11', 16, '1050', '1218'),
+(16, 18, 5, '2020-04-18', '14:10:54', 16, '1000', '1160'),
+(17, 18, 5, '2020-04-18', '16:05:48', 16, '1000', '1160'),
+(18, 18, 5, '2020-04-18', '16:21:52', 16, '4000', '4640'),
+(19, 18, 8, '2020-04-18', '16:22:04', 16, '500', '580'),
+(20, 18, 5, '2020-04-18', '16:23:21', 16, '15000', '17400'),
+(21, 18, 5, '2020-04-18', '17:19:56', 16, '9500', '11020'),
+(22, 18, 5, '2020-04-18', '17:20:10', 16, '4900', '5684'),
+(23, 18, 4, '2020-04-18', '17:40:49', 16, '72000', '83520'),
+(24, 18, 5, '2020-04-18', '18:07:17', 16, '65000', '75400'),
+(25, 18, 4, '2020-04-19', '00:56:46', 16, '16000', '18560'),
+(26, 18, 5, '2020-04-19', '14:08:09', 16, '2000', '2320');
 
 --
 -- Índices para tablas volcadas
@@ -680,7 +771,8 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `venta`
   ADD PRIMARY KEY (`id_venta`),
-  ADD KEY `id_cliente` (`id_cliente`);
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `venta_id_usuario` (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -768,7 +860,7 @@ ALTER TABLE `transferencia_insumo`
 -- AUTO_INCREMENT de la tabla `transferencia_producto`
 --
 ALTER TABLE `transferencia_producto`
-  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
@@ -786,7 +878,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Restricciones para tablas volcadas
@@ -895,7 +987,8 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
+  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  ADD CONSTRAINT `venta_id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
