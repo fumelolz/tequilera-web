@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2020 a las 01:25:38
+-- Tiempo de generación: 20-04-2020 a las 07:15:24
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -40,7 +40,10 @@ CREATE TABLE `almacen` (
 
 INSERT INTO `almacen` (`id_almacen`, `tipo`, `encargado`) VALUES
 (1, 1, 10),
-(2, 2, 5);
+(2, 2, 5),
+(3, 1, 18),
+(4, 2, 10),
+(7, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -137,10 +140,14 @@ INSERT INTO `detail_t_producto` (`id_producto`, `id_transf_producto`, `cantidad`
 (1, 24, 25),
 (1, 25, 25),
 (1, 30, 600),
+(1, 31, 60),
+(1, 32, 50),
 (2, 3, 30),
 (2, 4, 28),
 (2, 20, 2),
 (3, 30, 600),
+(3, 31, 60),
+(3, 32, 50),
 (4, 7, 90),
 (4, 8, 40),
 (4, 21, 50),
@@ -210,7 +217,11 @@ INSERT INTO `detail_venta` (`id_venta`, `id_producto`, `cantidad`) VALUES
 (23, 8, 10),
 (24, 6, 650),
 (25, 8, 80),
-(26, 8, 10);
+(26, 8, 10),
+(27, 1, 60),
+(27, 3, 60),
+(28, 1, 50),
+(28, 3, 50);
 
 -- --------------------------------------------------------
 
@@ -405,7 +416,8 @@ CREATE TABLE `tipo_almacen` (
 
 INSERT INTO `tipo_almacen` (`id_tipo_almacen`, `tipo`) VALUES
 (1, 'Productos'),
-(2, 'Insumos');
+(2, 'Insumos'),
+(5, 'Intendentes');
 
 -- --------------------------------------------------------
 
@@ -514,7 +526,9 @@ INSERT INTO `transferencia_producto` (`id_transf_producto`, `fecha`, `hora`, `cl
 (27, '2020-04-19', '11:10:12', 3, 1),
 (28, '2020-04-19', '00:56:46', 4, 1),
 (29, '2020-04-19', '14:08:09', 4, 1),
-(30, '2020-04-19', '18:04:12', 3, 1);
+(30, '2020-04-19', '18:04:12', 3, 1),
+(31, '2020-04-19', '18:31:28', 4, 1),
+(32, '2020-04-19', '22:27:39', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -559,14 +573,14 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `usuario`, `passwd`, `tipo`, `img`, `estado`, `ultimo_login`, `fecha`) VALUES
-(5, 'lol', 'grast', 'zevur', 1, '', 0, '0000-00-00 00:00:00', '2020-04-16 17:43:40'),
-(10, NULL, 'admin', 'admin', 1, NULL, 1, '2020-03-10 20:08:23', '2020-04-16 17:39:59'),
+(5, 'Raul Perez Escobedo', 'grast', 'zevur', 1, '', 0, '0000-00-00 00:00:00', '2020-04-19 18:44:28'),
+(10, 'Fabian Marquez Gonzalez', 'admin', 'admin', 1, '', 1, '2020-03-10 20:08:23', '2020-04-19 18:44:43'),
 (12, 'Yolanda Urcina Macedo', 'yolanda', 'yolanda', 1, 'vistas/img/usuarios/yolanda/108.jpg', 1, '2020-03-11 09:17:46', '2020-04-16 17:39:58'),
-(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-19 14:07:50', '2020-04-19 14:07:50'),
+(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-19 22:26:08', '2020-04-19 22:26:08'),
 (20, 'Faustino Magadan', 'faustino', '$2a$07$asxx54ahjppf45sd87a5auMnvguyEG4TUXMS0lgfGS8BokSElr81e', 2, NULL, 1, '2020-03-14 14:44:45', '2020-04-16 17:39:57'),
-(21, 'Juan Carlos Magadan', 'carlos', '$2a$07$asxx54ahjppf45sd87a5auXaW5n/KLY/bEvEkjrWiw6hTlwjyTGja', 1, NULL, 1, NULL, '2020-04-16 17:39:56'),
 (22, 'Juan Carlos Magadan', 'ironman32', '$2a$07$asxx54ahjppf45sd87a5auGD.G7H8Smda9QuzdEJEiZ.SRUJDwAN.', 1, 'vistas/img/usuarios/ironman32/693.jpg', 1, NULL, '2020-04-16 17:39:55'),
-(23, 'Rodrigo Sandoval Gonzalez', 'rodrigosik', '$2a$07$asxx54ahjppf45sd87a5auFL5K1.Cmt9ZheoVVuudOi5BCi10qWly', 1, 'vistas/img/usuarios/rodrigosik/999.png', 1, '2020-04-16 17:39:45', '2020-04-16 17:39:45');
+(23, 'Rodrigo Sandoval Gonzalez', 'rodrigosik', '$2a$07$asxx54ahjppf45sd87a5auFL5K1.Cmt9ZheoVVuudOi5BCi10qWly', 1, 'vistas/img/usuarios/rodrigosik/999.png', 1, '2020-04-16 17:39:45', '2020-04-16 17:39:45'),
+(24, 'Iker Fabian Magadan Perez', 'venom', '$2a$07$asxx54ahjppf45sd87a5auX1pSUlfscFiemWnW3k2difm5XwuWeIG', 1, 'vistas/img/usuarios/venom/365.png', 1, NULL, '2020-04-19 18:30:14');
 
 -- --------------------------------------------------------
 
@@ -615,7 +629,9 @@ INSERT INTO `venta` (`id_venta`, `id_usuario`, `id_cliente`, `fecha`, `hora`, `i
 (23, 18, 4, '2020-04-18', '17:40:49', 16, '72000', '83520'),
 (24, 18, 5, '2020-04-18', '18:07:17', 16, '65000', '75400'),
 (25, 18, 4, '2020-04-19', '00:56:46', 16, '16000', '18560'),
-(26, 18, 5, '2020-04-19', '14:08:09', 16, '2000', '2320');
+(26, 18, 5, '2020-04-19', '14:08:09', 16, '2000', '2320'),
+(27, 18, 7, '2020-04-19', '18:31:28', 16, '27000', '31320'),
+(28, 18, 8, '2020-04-19', '22:27:39', 16, '22500', '26100');
 
 --
 -- Índices para tablas volcadas
@@ -782,7 +798,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
@@ -836,7 +852,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `tipo_almacen`
 --
 ALTER TABLE `tipo_almacen`
-  MODIFY `id_tipo_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tipo_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_movimiento`
@@ -860,7 +876,7 @@ ALTER TABLE `transferencia_insumo`
 -- AUTO_INCREMENT de la tabla `transferencia_producto`
 --
 ALTER TABLE `transferencia_producto`
-  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
@@ -872,13 +888,13 @@ ALTER TABLE `unidad`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Restricciones para tablas volcadas

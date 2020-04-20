@@ -266,7 +266,7 @@
                 </div>
                 <select name="editarTipo" class="form-control">
                   <option id="editarTipo">Elegir tipo de usuario</option>
-                  <?php 
+                  <?php  
 
                     $item = null;
                     $valor = null;

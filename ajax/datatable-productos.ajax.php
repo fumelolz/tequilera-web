@@ -22,7 +22,7 @@ $jsonData = '{
 		if($productos[$i]["img"]){
 			$imagen = "<center><a href='".$productos[$i]["img"]."' target='_blank'><img src='".$productos[$i]["img"]."' class='img-thumbnail' width='40px'></a></center>";
 		}else{
-			$imagen = "<center><img src='vistas/img/default/noimage.png' class='img-thumbnail' width='40px'></center>'";
+			$imagen = "<center><img src='vistas/img/default/noimage.png' class='img-thumbnail' width='40px'></center>";
 		}
 
 		$stockRespuesta = ControladorProductos::ctrConsultaStock($productos[$i]["id_producto"]);
