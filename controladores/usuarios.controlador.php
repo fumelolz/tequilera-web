@@ -394,13 +394,13 @@ class ControladorUsuarios{
 
 			$tabla = "usuario";
 			$item = "usuario";
-			$valor = $_POST["user"];
+			$valor = strtolower($_POST["user"]);
 
 			$respuesta = ModeloUsuarios::mdlMostrarUsuarios($tabla,$item,$valor);
 
 			$cryptedPassword = crypt($_POST["password"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
-			if ($respuesta["usuario"] == $_POST["user"]) {
+			if ($respuesta["usuario"] == strtolower($_POST["user"])) {
 
 				if (hash_equals($respuesta["passwd"],$cryptedPassword)) {
 					
@@ -446,7 +446,7 @@ class ControladorUsuarios{
 					var user = document.querySelector('.userInput')
 					var pass = document.querySelector('.passInput')
 					pass.classList.add('is-invalid')
-					user.setAttribute('value','";echo $_POST["user"]; echo "')
+					user.setAttribute('value','";echo strtolower($_POST["user"]); echo "')
 					</script>";
 				}
 
@@ -455,7 +455,7 @@ class ControladorUsuarios{
 				echo"<script>
 				var user = document.querySelector('.userInput')
 				user.classList.add('is-invalid')
-				user.setAttribute('value','";echo $_POST["user"]; echo "')
+				user.setAttribute('value','";echo strtolower($_POST["user"]); echo "')
 				</script>";
 
 				echo '<br><div class="alert alert-danger">El usuario no existe</div>';

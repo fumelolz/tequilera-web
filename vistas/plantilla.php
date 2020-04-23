@@ -9,6 +9,9 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- css perzonalizado -->
+  <link rel="stylesheet" href="vistas/css/jquery.datetimepicker.min.css">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="vistas/plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
@@ -46,7 +49,9 @@
         $_GET["ruta"] == "productos" ||
         $_GET["ruta"] == "proveedores" ||
         $_GET["ruta"] == "crear-venta" ||
-        $_GET["ruta"] == "almacenes") {
+        $_GET["ruta"] == "almacenes" ||
+        $_GET["ruta"] == "orden-produccion" ||
+        $_GET["ruta"] == "historial-orden-produccion") {
          // Content
         include "modulos/".$_GET["ruta"].".php"; 
     }else{
@@ -79,6 +84,7 @@
 
 <!-- jQuery -->
 <script src="vistas/plugins/jquery/jquery.min.js"></script>
+<script src="vistas/js/jquery.datetimepicker.full.js"></script>
 <!-- Bootstrap 4 -->
 <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
@@ -103,7 +109,9 @@ if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
       $_GET["ruta"] == "productos" ||
       $_GET["ruta"] == "proveedores" ||
       $_GET["ruta"] == "crear-venta" ||
-      $_GET["ruta"] == "almacenes") {
+      $_GET["ruta"] == "almacenes" ||
+      $_GET["ruta"] == "orden-produccion" ||
+      $_GET["ruta"] == "historial-orden-produccion") {
       
       echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
   }

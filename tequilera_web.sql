@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-04-2020 a las 07:15:24
+-- Tiempo de generación: 23-04-2020 a las 20:15:33
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -40,10 +40,7 @@ CREATE TABLE `almacen` (
 
 INSERT INTO `almacen` (`id_almacen`, `tipo`, `encargado`) VALUES
 (1, 1, 10),
-(2, 2, 5),
-(3, 1, 18),
-(4, 2, 10),
-(7, 1, 22);
+(2, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -84,7 +81,13 @@ CREATE TABLE `detail_orden_prod` (
 --
 
 INSERT INTO `detail_orden_prod` (`id_orden`, `id_producto`, `cantidad`) VALUES
-(1, 1, 20);
+(1, 1, 20),
+(6, 2, 22),
+(7, 2, 8),
+(7, 4, 12),
+(8, 2, 1),
+(8, 4, 2),
+(8, 7, 3);
 
 -- --------------------------------------------------------
 
@@ -255,15 +258,23 @@ CREATE TABLE `orden_produccion` (
   `id_orden_produccion` int(11) NOT NULL,
   `fecha` date DEFAULT NULL,
   `fecha_entrega` date DEFAULT NULL,
-  `solicitante` int(11) DEFAULT NULL
+  `solicitante` int(11) DEFAULT NULL,
+  `estado` tinyint(2) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `orden_produccion`
 --
 
-INSERT INTO `orden_produccion` (`id_orden_produccion`, `fecha`, `fecha_entrega`, `solicitante`) VALUES
-(1, '2020-03-09', '2020-03-13', 10);
+INSERT INTO `orden_produccion` (`id_orden_produccion`, `fecha`, `fecha_entrega`, `solicitante`, `estado`) VALUES
+(1, '2020-03-09', '2020-03-13', 10, 0),
+(2, '2020-04-21', '2020-04-24', 18, 1),
+(3, '2020-04-21', '2020-04-30', 18, 1),
+(4, '2020-04-21', '2020-04-22', 18, 1),
+(5, '2020-04-21', '2020-04-26', 18, 1),
+(6, '2020-04-21', '2020-04-23', 18, 1),
+(7, '2020-04-23', '2020-04-25', 18, 1),
+(8, '2020-04-23', '2020-04-25', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -416,8 +427,7 @@ CREATE TABLE `tipo_almacen` (
 
 INSERT INTO `tipo_almacen` (`id_tipo_almacen`, `tipo`) VALUES
 (1, 'Productos'),
-(2, 'Insumos'),
-(5, 'Intendentes');
+(2, 'Insumos');
 
 -- --------------------------------------------------------
 
@@ -576,7 +586,7 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `usuario`, `passwd`, `tipo`, `img
 (5, 'Raul Perez Escobedo', 'grast', 'zevur', 1, '', 0, '0000-00-00 00:00:00', '2020-04-19 18:44:28'),
 (10, 'Fabian Marquez Gonzalez', 'admin', 'admin', 1, '', 1, '2020-03-10 20:08:23', '2020-04-19 18:44:43'),
 (12, 'Yolanda Urcina Macedo', 'yolanda', 'yolanda', 1, 'vistas/img/usuarios/yolanda/108.jpg', 1, '2020-03-11 09:17:46', '2020-04-16 17:39:58'),
-(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-19 22:26:08', '2020-04-19 22:26:08'),
+(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-23 12:07:31', '2020-04-23 12:07:31'),
 (20, 'Faustino Magadan', 'faustino', '$2a$07$asxx54ahjppf45sd87a5auMnvguyEG4TUXMS0lgfGS8BokSElr81e', 2, NULL, 1, '2020-03-14 14:44:45', '2020-04-16 17:39:57'),
 (22, 'Juan Carlos Magadan', 'ironman32', '$2a$07$asxx54ahjppf45sd87a5auGD.G7H8Smda9QuzdEJEiZ.SRUJDwAN.', 1, 'vistas/img/usuarios/ironman32/693.jpg', 1, NULL, '2020-04-16 17:39:55'),
 (23, 'Rodrigo Sandoval Gonzalez', 'rodrigosik', '$2a$07$asxx54ahjppf45sd87a5auFL5K1.Cmt9ZheoVVuudOi5BCi10qWly', 1, 'vistas/img/usuarios/rodrigosik/999.png', 1, '2020-04-16 17:39:45', '2020-04-16 17:39:45'),
@@ -798,7 +808,7 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `almacen`
 --
 ALTER TABLE `almacen`
-  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
@@ -816,7 +826,7 @@ ALTER TABLE `insumo`
 -- AUTO_INCREMENT de la tabla `orden_produccion`
 --
 ALTER TABLE `orden_produccion`
-  MODIFY `id_orden_produccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_orden_produccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
@@ -852,7 +862,7 @@ ALTER TABLE `proveedor`
 -- AUTO_INCREMENT de la tabla `tipo_almacen`
 --
 ALTER TABLE `tipo_almacen`
-  MODIFY `id_tipo_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_tipo_almacen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_movimiento`

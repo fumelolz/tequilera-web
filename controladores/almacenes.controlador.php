@@ -260,7 +260,27 @@ class ControladorAlmacenes{
 						});
 
 						</script>";	
-					}
+					}else {
+								echo "<script>
+
+								Swal.fire({
+									type: 'Error',
+									title: 'Error en [modeloTipoAlmacen-Eliminar], contacte al administrador',
+									showConfirmButton:true,
+									confirmButtonText: 'Cerrar',
+									closeOnConfirm: false
+									}).then(function(result){
+
+										if(result.value){
+
+											window.location = 'almacenes';
+
+										}
+
+										});
+
+										</script>";
+									}
 
 		}
 
@@ -297,7 +317,27 @@ class ControladorAlmacenes{
 							});
 
 							</script>";	
-						}
+						}else {
+								echo "<script>
+
+								Swal.fire({
+									type: 'Error',
+									title: 'Error en [modeloTipoAlmacen-Editar], contacte al administrador',
+									showConfirmButton:true,
+									confirmButtonText: 'Cerrar',
+									closeOnConfirm: false
+									}).then(function(result){
+
+										if(result.value){
+
+											window.location = 'almacenes';
+
+										}
+
+										});
+
+										</script>";
+									}
 
 				
 

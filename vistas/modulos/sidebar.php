@@ -100,6 +100,18 @@
                   <p>Productos</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="orden-produccion" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Orden de Producción</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="historial-orden-produccion" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Historial de Ordenes</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
