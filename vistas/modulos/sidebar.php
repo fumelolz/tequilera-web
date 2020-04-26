@@ -129,6 +129,12 @@
                   <p>Almacenes</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="insumos" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Insumos</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

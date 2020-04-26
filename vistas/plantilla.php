@@ -51,7 +51,8 @@
         $_GET["ruta"] == "crear-venta" ||
         $_GET["ruta"] == "almacenes" ||
         $_GET["ruta"] == "orden-produccion" ||
-        $_GET["ruta"] == "historial-orden-produccion") {
+        $_GET["ruta"] == "historial-orden-produccion" ||
+        $_GET["ruta"] == "insumos") {
          // Content
         include "modulos/".$_GET["ruta"].".php"; 
     }else{
@@ -111,7 +112,8 @@ if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
       $_GET["ruta"] == "crear-venta" ||
       $_GET["ruta"] == "almacenes" ||
       $_GET["ruta"] == "orden-produccion" ||
-      $_GET["ruta"] == "historial-orden-produccion") {
+      $_GET["ruta"] == "historial-orden-produccion" ||
+        $_GET["ruta"] == "insumos") {
       
       echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
   }
