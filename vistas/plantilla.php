@@ -1,5 +1,4 @@
-<?php session_start();  
-?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +51,8 @@
         $_GET["ruta"] == "almacenes" ||
         $_GET["ruta"] == "orden-produccion" ||
         $_GET["ruta"] == "historial-orden-produccion" ||
-        $_GET["ruta"] == "insumos") {
+        $_GET["ruta"] == "insumos" ||
+        $_GET["ruta"] == "pedidos-proveedor") {
          // Content
         include "modulos/".$_GET["ruta"].".php"; 
     }else{
@@ -113,7 +113,8 @@ if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
       $_GET["ruta"] == "almacenes" ||
       $_GET["ruta"] == "orden-produccion" ||
       $_GET["ruta"] == "historial-orden-produccion" ||
-        $_GET["ruta"] == "insumos") {
+      $_GET["ruta"] == "insumos" ||
+      $_GET["ruta"] == "pedidos-proveedor") {
       
       echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
   }

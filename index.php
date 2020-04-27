@@ -10,6 +10,7 @@ require_once 'controladores/crear-venta.controlador.php';
 require_once 'controladores/almacenes.controlador.php';
 require_once 'controladores/orden-produccion.controlador.php';
 require_once 'controladores/insumos.controlador.php';
+require_once 'controladores/pedidos-proveedor.controlador.php';
 
 // Modelos
 require_once 'modelos/clientes.modelos.php';
@@ -20,6 +21,7 @@ require_once 'modelos/crear-venta.modelos.php';
 require_once 'modelos/almacenes.modelos.php';
 require_once 'modelos/orden-produccion.modelos.php';
 require_once 'modelos/insumos.modelos.php';
+require_once 'modelos/pedidos-proveedor.modelos.php';
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

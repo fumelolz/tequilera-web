@@ -77,11 +77,28 @@
                   <p>Clientes</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="proveedores" class="nav-link">
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Proveedores</p>
+                  <p>
+                    Control Proveedores
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview" style="display: none;">
+                  <li class="nav-item">
+                    <a href="proveedores" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Proveedores</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="pedidos-proveedor" class="nav-link">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>Pedidos</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
