@@ -29,7 +29,7 @@
 
             <form method="POST">
 
-              <div class="row">
+              <div class="row d-flex justify-content-between">
                 <div class="form-group col-md-3">
                   <?php 
                   
@@ -53,22 +53,10 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-key"></i></span>
                     </div> 
-                    <input type="text" class="form-control" id="nuevoId" name="nuevoId" value="<?php echo $id_pedido; ?>" required readonly>
+                    <input type="text" class="form-control" id="nuevoIdPedido" name="nuevoIdPedido" value="<?php echo $id_pedido; ?>" required readonly>
                   </div>
                 </div>
-              </div>
 
-              <div class="form-group mb-3">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Solicitante:</i></span>
-                  </div>
-                  <input type="hidden"id="nuevoSolicitante" name="nuevoSolicitante" value="<?php echo $_SESSION["id_usuario"]; ?>" required readonly>
-                  <input type="text" class="form-control" value="<?php echo $_SESSION["usuario"]; ?>" readonly>
-                </div>
-              </div>
-
-              <div class="row">
                 <?php 
 
                 date_default_timezone_set('America/Mexico_City');
@@ -85,15 +73,40 @@
                     <input type="text" class="form-control" id="nuevoFecha" name="nuevoFecha" value="<?php echo $date; ?>" required readonly>
                   </div>
                 </div>
-                <div class="form-group col-md-6">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                    </div> 
-                    <input type="text" class="form-control" id="nuevoFechaEntrega" name="nuevoFechaEntrega" placeholder="Fecha de entrega" autocomplete="off" required>
+              </div>
+
+              <div class="form-group mb-3">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Solicitante:</i></span>
                   </div>
+                  <input type="hidden"id="nuevoSolicitante" name="nuevoSolicitante" value="<?php echo $_SESSION["id_usuario"]; ?>" required readonly>
+                  <input type="text" class="form-control" value="<?php echo $_SESSION["usuario"]; ?>" readonly>
                 </div>
               </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-users"></i></span>
+                  </div>
+                  <select class="form-control" name="nuevoProveedor" id="nuevoProveedor" required>
+                    <option value="">Selecciónar Proveedor</option>
+                    <?php 
+                    
+                    $item = null;
+                    $valor = null;
+
+                    $proveedores = ControladorProveedores::ctrMostrarProveedores($item,$valor);
+
+                    foreach ($proveedores as $key => $value) {
+                      echo '<option value="'.$value["id_proveedor"].'">'.$value["nombre"].'</option>';
+                    }
+
+                    ?>
+                  </select>
+                </div>
+              </div> 
               
               <hr>
 
@@ -110,8 +123,8 @@
               </div>
               <?php 
 
-              $crearOrdenProduccion = new ControladorOrdenProduccion();
-              $crearOrdenProduccion -> ctrCrearOrden();
+              $crearPedidoProveedor = new ControladorPedidosProveedor();
+              $crearPedidoProveedor -> ctrCrearPedidoProveedor();
 
               ?>
             </form>
@@ -123,18 +136,25 @@
         <div class="bg-warning" style="height: 4px;"></div>
         <div class="card">
           <div class="card-body">
-            <table class="table table-bordered table-striped tablaOrdenProduccion" style="width: 100%;">
+            <table class="table table-bordered table-striped tablaPedidoProveedor" style="width: 100%;">
               <thead>
                 <tr>
                   <th style="width: 8px;">#</th>
                   <th>Descripción</th>
                   <th style="width: 10px;">Presentación</th>
-                  <th>Precio</th>
                   <th>Stock</th>
-                  <th>Foto</th>
                   <th>Acciónes</th>
                 </tr>
               </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Botella de vidrio</td>
+                  <td>Caja</td>
+                  <td>16</td>
+                  <td>Botones</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
