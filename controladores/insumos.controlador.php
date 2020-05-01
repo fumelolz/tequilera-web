@@ -39,7 +39,10 @@ class ControladorInsumos{
 					$datos = array('descripcion' => $descripcion,
 						'unidad' => $unidad,
 						'cant_unidad' => $cantidad);
-					
+
+					// Mostrar array de datos
+					//echo '<pre>'; print_r($datos); echo '</pre>';
+
 					$respuesta = ModeloInsumos::mdlCrearInsumo($tabla,$datos);
 
 					if($respuesta == "ok"){
@@ -108,10 +111,47 @@ class ControladorInsumos{
 								   'unidad' => $unidad,
 								   'cant_unidad' => $cantidad );
 					
-					echo '<pre>'; print_r($datos); echo '</pre>';
-					
 					$respuesta = ModeloInsumos::mdlEditarInsumo($tabla,$datos);
-					echo '<pre>'; print_r($respuesta); echo '</pre>';
+					if($respuesta == "ok"){
+						echo "<script>
+						Swal.fire({
+							type: 'success',
+							title: 'Insumo Editado Correctamente',
+							showConfirmButton:true,
+							confirmButtonText: 'Cerrar',
+							closeOnConfirm: false
+							}).then(function(result){
+
+								if(result.value){
+
+									window.location = 'insumos';
+
+								}
+
+								});
+
+								</script>";	
+							}else {
+								echo "<script>
+
+								Swal.fire({
+									type: 'Error',
+									title: 'Error en [modeloInsumo-Editar], contacte al administrador',
+									showConfirmButton:true,
+									confirmButtonText: 'Cerrar',
+									closeOnConfirm: false
+									}).then(function(result){
+
+										if(result.value){
+
+											window.location = 'insumos';
+
+										}
+
+										});
+
+										</script>";
+									}
 					
 
 				}

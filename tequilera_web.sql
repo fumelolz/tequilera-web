@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-04-2020 a las 04:36:33
+-- Tiempo de generación: 01-05-2020 a las 20:44:48
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -106,7 +106,11 @@ CREATE TABLE `detail_pedido` (
 --
 
 INSERT INTO `detail_pedido` (`id_pedido`, `id_insumo`, `cantidad`) VALUES
-(2, 1, 30);
+(2, 1, 30),
+(8, 2, 7),
+(9, 1, 1),
+(9, 2, 4),
+(10, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -145,6 +149,7 @@ INSERT INTO `detail_t_producto` (`id_producto`, `id_transf_producto`, `cantidad`
 (1, 30, 600),
 (1, 31, 60),
 (1, 32, 50),
+(1, 33, 10),
 (2, 3, 30),
 (2, 4, 28),
 (2, 20, 2),
@@ -224,7 +229,8 @@ INSERT INTO `detail_venta` (`id_venta`, `id_producto`, `cantidad`) VALUES
 (27, 1, 60),
 (27, 3, 60),
 (28, 1, 50),
-(28, 3, 50);
+(28, 3, 50),
+(29, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -246,7 +252,15 @@ CREATE TABLE `insumo` (
 INSERT INTO `insumo` (`id_insumo`, `descripcion`, `unidad`, `cant_unidad`) VALUES
 (1, 'botellas de vidrio', 1, 12),
 (2, 'tapon', 2, 100),
-(3, 'prueba', 1, 50);
+(3, 'Corcho', 1, 50),
+(4, 'Botella de plastico', 1, 150),
+(5, 'Caja para vino', 1, 600),
+(6, 'Caja para tequila', 1, 200),
+(7, 'Caja para Mezcal', 1, 300),
+(8, 'Uvas', 1, 100),
+(9, 'Agave', 2, 120),
+(10, 'Prueba', 1, 12),
+(11, 'Prueba2', 1, 123);
 
 -- --------------------------------------------------------
 
@@ -294,7 +308,15 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `id_usuario`, `id_proveedor`, `fecha`) VALUES
-(2, 10, 3, '2020-03-09');
+(2, 10, 3, '2020-03-09'),
+(3, 18, 3, '2020-04-29'),
+(4, 18, 3, '2020-04-29'),
+(5, 18, 3, '2020-04-29'),
+(6, 18, 3, '2020-04-29'),
+(7, 18, 3, '2020-05-01'),
+(8, 18, 3, '2020-05-01'),
+(9, 18, 3, '2020-05-01'),
+(10, 18, 3, '2020-05-01');
 
 -- --------------------------------------------------------
 
@@ -538,7 +560,8 @@ INSERT INTO `transferencia_producto` (`id_transf_producto`, `fecha`, `hora`, `cl
 (29, '2020-04-19', '14:08:09', 4, 1),
 (30, '2020-04-19', '18:04:12', 3, 1),
 (31, '2020-04-19', '18:31:28', 4, 1),
-(32, '2020-04-19', '22:27:39', 4, 1);
+(32, '2020-04-19', '22:27:39', 4, 1),
+(33, '2020-04-27', '17:14:40', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -584,9 +607,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `usuario`, `passwd`, `tipo`, `img`, `estado`, `ultimo_login`, `fecha`) VALUES
 (5, 'Raul Perez Escobedo', 'grast', 'zevur', 1, '', 0, '0000-00-00 00:00:00', '2020-04-19 18:44:28'),
-(10, 'Fabian Marquez Gonzalez', 'admin', 'admin', 1, '', 1, '2020-03-10 20:08:23', '2020-04-19 18:44:43'),
+(10, 'Fabian Marquez Gonzalez', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 1, '', 1, '2020-04-27 17:12:56', '2020-04-27 17:12:56'),
 (12, 'Yolanda Urcina Macedo', 'yolanda', 'yolanda', 1, 'vistas/img/usuarios/yolanda/108.jpg', 1, '2020-03-11 09:17:46', '2020-04-16 17:39:58'),
-(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-04-25 11:32:38', '2020-04-25 11:32:38'),
+(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-05-01 12:38:15', '2020-05-01 12:38:15'),
 (20, 'Faustino Magadan', 'faustino', '$2a$07$asxx54ahjppf45sd87a5auMnvguyEG4TUXMS0lgfGS8BokSElr81e', 2, NULL, 1, '2020-03-14 14:44:45', '2020-04-16 17:39:57'),
 (22, 'Juan Carlos Magadan', 'ironman32', '$2a$07$asxx54ahjppf45sd87a5auGD.G7H8Smda9QuzdEJEiZ.SRUJDwAN.', 1, 'vistas/img/usuarios/ironman32/693.jpg', 1, NULL, '2020-04-16 17:39:55'),
 (23, 'Rodrigo Sandoval Gonzalez', 'rodrigosik', '$2a$07$asxx54ahjppf45sd87a5auFL5K1.Cmt9ZheoVVuudOi5BCi10qWly', 1, 'vistas/img/usuarios/rodrigosik/999.png', 1, '2020-04-16 17:39:45', '2020-04-16 17:39:45'),
@@ -641,7 +664,8 @@ INSERT INTO `venta` (`id_venta`, `id_usuario`, `id_cliente`, `fecha`, `hora`, `i
 (25, 18, 4, '2020-04-19', '00:56:46', 16, '16000', '18560'),
 (26, 18, 5, '2020-04-19', '14:08:09', 16, '2000', '2320'),
 (27, 18, 7, '2020-04-19', '18:31:28', 16, '27000', '31320'),
-(28, 18, 8, '2020-04-19', '22:27:39', 16, '22500', '26100');
+(28, 18, 8, '2020-04-19', '22:27:39', 16, '22500', '26100'),
+(29, 10, 8, '2020-04-27', '17:14:40', 16, '2000', '2320');
 
 --
 -- Índices para tablas volcadas
@@ -820,7 +844,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `insumo`
 --
 ALTER TABLE `insumo`
-  MODIFY `id_insumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_insumo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_produccion`
@@ -832,7 +856,7 @@ ALTER TABLE `orden_produccion`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
@@ -886,7 +910,7 @@ ALTER TABLE `transferencia_insumo`
 -- AUTO_INCREMENT de la tabla `transferencia_producto`
 --
 ALTER TABLE `transferencia_producto`
-  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
@@ -904,7 +928,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

@@ -116,10 +116,10 @@
 
               <hr>
 
-              <input type="hidden" id="listaProductos" name="listaProductos">
+              <input type="hidden" id="listaInsumos" name="listaInsumos">
 
               <div class="card-footer d-flex justify-content-end">
-                <button type="submit" class="btn btn-lg btn-success">Crear Orden</button>
+                <button type="submit" class="btn btn-lg btn-success">Crear Pedido</button>
               </div>
               <?php 
 
@@ -146,15 +146,6 @@
                   <th>Acciónes</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Botella de vidrio</td>
-                  <td>Caja</td>
-                  <td>16</td>
-                  <td>Botones</td>
-                </tr>
-              </tbody>
             </table>
           </div>
         </div>

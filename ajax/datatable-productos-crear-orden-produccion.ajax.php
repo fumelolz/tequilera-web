@@ -1,4 +1,4 @@
-<?php 
+<?php  
 
 require_once '../controladores/productos.controlador.php';
 require_once '../modelos/productos.modelos.php';

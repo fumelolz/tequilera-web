@@ -35,7 +35,7 @@ class ModeloInsumos{
 
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(descripcion,unidad,cant_unidad) VALUES (:descripcion,:unidad,:cant_unidad)");
 
-		$stmt -> bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_INT);
+		$stmt -> bindParam(":descripcion",$datos["descripcion"],PDO::PARAM_STR);
 		$stmt -> bindParam(":unidad",$datos["unidad"],PDO::PARAM_INT);
 		$stmt -> bindParam(":cant_unidad",$datos["cant_unidad"],PDO::PARAM_INT);
 
