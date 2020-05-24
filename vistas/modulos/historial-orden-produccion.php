@@ -30,6 +30,7 @@
               <th>Entrega</th>
               <th>Solicitante</th>
               <th>Estado</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +56,7 @@
               <td>'.$value["fecha"].'</td>
               <td>'.$value["fecha_entrega"].'</td>
               <td>'.$solicitante["nombre"].'</td>
+              
               <td><center>';
 
               if ($estado == 0) {
@@ -73,9 +75,20 @@
                   break;
               }
 
-              echo '</center></td></tr>
+              echo '</center></td>
 
-              ';
+              <td>
+              <center>
+              <div class="btn-group-sm">
+
+              <button class="btn btn-primary">Imprimir</i></button>
+
+              <button class="btn btn-warning btnEditarUsuario" data-toggle="modal" data-target="#modalEditarUsuario"><i class="far fa-eye mr-1"></i> Ver orden</i></button>
+
+              </div>
+              </center>
+              </td>
+              </tr>';
             }
 
             ?>

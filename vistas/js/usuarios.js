@@ -59,7 +59,7 @@ $(document).on('click', '.btnEditarUsuario', function(event) {
 		}
 	});
 });
-
+ 
 // Verificar Usuario si existe
 $("#nuevoUsuario").change(function(event) {
 	var usuario = $(this).val();
@@ -176,7 +176,7 @@ $("#editarFoto").change(function() {
 	}
 
 });
-
+ 
 
 /*Activar Usuario*/
 $(document).on("click",".btnActivate",function() {

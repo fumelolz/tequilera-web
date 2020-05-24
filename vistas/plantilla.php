@@ -1,5 +1,5 @@
-<?php session_start();?>
-<!DOCTYPE html>
+<?php session_start(); ?>
+<!DOCTYPE html> 
 <html>
 <head>
   <meta charset="utf-8">
@@ -19,12 +19,16 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- DataTables -->
   <link rel="stylesheet" href="vistas/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.css">
+  <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.css"> 
 
   <!-- SweetAlert -->
   <link rel="stylesheet" href="vistas/plugins/sweetalert2/sweetalert2.css">
   <!-- SweetAlert -->
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+  <!-- ChartJs -->
+  <link rel="stylesheet" href="vistas/js/chartjs/Chart.css">
+  <script src="vistas/js/chartjs/Chart.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse <?php if(isset($_SESSION["logged"])){}else{echo 'login-page';} ?>">
@@ -52,7 +56,8 @@
         $_GET["ruta"] == "orden-produccion" ||
         $_GET["ruta"] == "historial-orden-produccion" ||
         $_GET["ruta"] == "insumos" ||
-        $_GET["ruta"] == "pedidos-proveedor") {
+        $_GET["ruta"] == "pedidos-proveedor" ||
+        $_GET["ruta"] == "transferencia-insumos") {
          // Content
         include "modulos/".$_GET["ruta"].".php"; 
     }else{
@@ -98,8 +103,8 @@
 <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
 
 <!-- Js Perzonalizado -->
-<script src="vistas/js/plantilla.js"></script>
 <script src="vistas/js/moment.js"></script>
+<script src="vistas/js/plantilla.js"></script>
 <?php 
 
 if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
@@ -114,7 +119,8 @@ if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
       $_GET["ruta"] == "orden-produccion" ||
       $_GET["ruta"] == "historial-orden-produccion" ||
       $_GET["ruta"] == "insumos" ||
-      $_GET["ruta"] == "pedidos-proveedor") {
+      $_GET["ruta"] == "pedidos-proveedor" ||
+      $_GET["ruta"] == "transferencia-insumos") {
       
       echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
   }

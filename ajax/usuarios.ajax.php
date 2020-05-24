@@ -16,7 +16,7 @@ class AjaxUsuarios{
 
 		echo json_encode($respuesta);
 	}
-
+ 
 	// Verificar Si existe nombre de usuario por nombre
 	public $nombreUsuario;
 

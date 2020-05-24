@@ -151,7 +151,27 @@ class ControladorProductos{
 
 					}
 				}
-			}
+			}else {
+									echo "<script>
+
+									Swal.fire({
+										type: 'error',
+										title: 'Verifica el nombre, no puede llevar caracteres o signos especiales',
+										showConfirmButton:true,
+										confirmButtonText: 'Cerrar',
+										closeOnConfirm: false
+										}).then(function(result){
+
+											if(result.value){
+
+												window.location = 'productos';
+
+											}
+
+											});
+
+											</script>";
+										}
 		}
 	}
 

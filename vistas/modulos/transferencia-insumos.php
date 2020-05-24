@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Insumos</h1>
+          <h1>Transferencia de Insumos</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="home">Home</a></li>
-            <li class="breadcrumb-item active">Insumos</li>
+            <li class="breadcrumb-item active">Transferencia de Insumos</li>
           </ol>
         </div>
       </div>
@@ -20,20 +20,21 @@
 
   <!-- Main content -->
   <section class="content">
-
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAgregarInsumo">Agregar Producto</button>
+        <button class="btn btn-secondary" data-toggle="modal" data-target="#modalAgregarInsumo">Crear Transferencia</button>
       </div>
       <div class="card-body">
         <table class="table table-bordered table-striped tablaInsumos" style="width: 100%;">
           <thead>
             <tr>
               <th style="width: 10px;">#</th>
-              <th>Descripción</th>
-              <th>Presentación</th>
-              <th>Stock</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Movimiento</th>
+              <th>Almacen</th>
+              <th>Estado</th>
               <th>Acciónes</th>
             </tr>
           </thead>
@@ -43,24 +44,48 @@
             $item = null;
             $valor = null;
 
-            $insumos = ControladorInsumos::ctrMostrarInsumos($item,$valor); 
+            $mostrarTransInsumos = ControladorTransfeInsumos::ctrMostrarTransfeInsumos($item,$valor); 
 
-            foreach ($insumos as $key => $value) {
+            foreach ($mostrarTransInsumos as $key => $value) {
 
-              $item2 = "id_unidad";
-              $valor2 = $value["unidad"];
-              $unidad = ControladorInsumos::ctrMostrarTipoUnidad($item2,$valor2);
+              $item2 = "id_tipo_almacen";
+              $valor2 = $value["almacen"];
+
+              $almacen = ControladorAlmacenes::ctrMostrarTipoAlmacen($item2,$valor2);
+
+              $item3 = "id_clasificacion";
+              $valor3 = $value["movimiento"];
+
+              $movimiento = ControladorTransfeInsumos::ctrMostrarTipoMovimiento($item3,$valor3); 
+
+              $estado = $value["estado"];
 
               echo '
               <tr>
-              <td><center>'.$value["id_insumo"].'</center></td>
-              <td><center>'.$value["descripcion"].'</center></td>
-              <td><center>'.$unidad["unidad"].'</center></td>
-              <td><center>'.$value["cant_unidad"].'</center></td>
+              <td><center>'.$value["id_transf_insumo"].'</center></td>
+              <td><center>'.$value["fecha"].'</center></td>
+              <td><center>'.$value["hora"].'</center></td>
+              <td><center>'.$movimiento["descripcion"].'</center></td>
+              <td><center>'.$almacen["tipo"].'</center></td>
+              <td><center>'; 
+
+              switch ($estado) {
+                case 0:
+                  echo '<button class="btn btn-flat btn-danger">Cancelado</button>';
+                  break;
+                case 1:
+                  echo '<button class="btn btn-flat btn-warning">En progreso</button>';
+                  break;
+                case 2:
+                  echo '<button class="btn btn-flat btn-success">Completado</button>';
+                  break;
+              }
+
+
+              echo '</center></td>
               <td><center>
               <div class="btn-group-sm">
-              <button class="btn btn-warning btnEditarInsumo" idInsumo="'.$value["id_insumo"].'" data-toggle="modal" data-target="#modalEditarInsumo"><i class="fas fa-pencil-alt"></i></button>
-              <button class="btn btn-danger btnEliminarInsumo" idInsumo="'.$value["id_insumo"].'"><i class="fas fa-times"></i></button>
+              <button class="btn btn-secondary btnImprimir" idTransInsumo="'.$value["id_transf_insumo"].'">Imprimir</button> 
               </div>
               </center></td>
               </tr>';

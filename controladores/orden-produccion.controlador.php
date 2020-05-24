@@ -92,7 +92,7 @@ class ControladorOrdenProduccion{
 
 		$respuesta = ModeloOrdenProduccion::mdlNuevasOrdenes($tabla);
 
-		return $respuesta;
+		return $respuesta[0];
 
 	}
 
