@@ -67,9 +67,15 @@
                echo '<td><center><button class="btn btn-danger btn-sm btnActivate" estado="1" idUsuario="'.$value["id_usuario"].'">Desactivado</button></center></td>';
              }
 
-             echo' 
-             <td><center>'.$value["tipo"].'</center></td>
-             <td><center><span class="reloj">'.$value["ultimo_login"].'</span></center></td>
+             
+
+             if ($value["tipo"] == 1) {
+              echo '<td><center><button class="btn-success">Administrador</button></center></td>';
+             }else{
+              echo '<td><center><button class="btn-warning">Operativo</button></center></td>';
+             }
+
+             echo'<td><center><span class="reloj">'.$value["ultimo_login"].'</span></center></td>
              <td>
              <center>
              <div class="btn-group-sm">
@@ -82,18 +88,18 @@
            }
 
 
-            ?>
-          </tbody>
-        </table>
-      </div>
-      <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
+           ?>
+         </tbody>
+       </table>
+     </div>
+     <!-- /.card-body -->
+   </div>
+   <!-- /.card -->
 
-  </section>
-  <!-- /.content -->
+ </section>
+ <!-- /.content -->
 </div>
-  <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 
 <!-- Modal crear Usuario -->
 <div class="modal fade" id="modalAgregarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalAgregarUsuario" aria-hidden="true">
@@ -138,7 +144,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-user"></i></span>
                 </div>
-                <input type="pass"  class="form-control" placeholder="Contraseña" name="nuevoPass" id="nuevoPass" required>
+                <input type="password"  class="form-control" placeholder="Contraseña" name="nuevoPass" id="nuevoPass" required>
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   La contraseña debe de ser mayor a 5 caracteres, puede llevar caracteres especiales
                 </small>
@@ -154,16 +160,16 @@
                 <select name="nuevoTipo" id="nuevoTipo" class="form-control">
                   <?php 
 
-                    $item = null;
-                    $valor = null;
+                  $item = null;
+                  $valor = null;
 
-                    $tipoUsuario = ControladorUsuarios::ctrMostrarTipoUsuarios($item,$valor);
-                    
-                    foreach ($tipoUsuario as $key => $value) {
-                      echo '<option value="'.$value["id_tipo_usuario"].'">'.$value["tipo"].'</option>';
-                    }
+                  $tipoUsuario = ControladorUsuarios::ctrMostrarTipoUsuarios($item,$valor);
 
-                   ?>
+                  foreach ($tipoUsuario as $key => $value) {
+                    echo '<option value="'.$value["id_tipo_usuario"].'">'.$value["tipo"].'</option>';
+                  }
+
+                  ?>
                 </select>
               </div>
             </div>
@@ -231,8 +237,8 @@
             <!-- Entrada Para el nombre de usuario -->
             <div class="form-group">
               <small id="passwordHelpBlock" class="form-text text-muted">
-                  El nombre usuario no puede ser editado
-                </small>
+                El nombre usuario no puede ser editado
+              </small>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-user"></i></span>
@@ -248,7 +254,7 @@
                   <span class="input-group-text"><i class="far fa-user"></i></span>
                 </div>
                 <input type="hidden" id="editarPassActual" name="editarPassActual">
-                <input type="pass"  class="form-control" placeholder="Contraseña" name="editarPass" id="editarPass">
+                <input type="password"  class="form-control" placeholder="Contraseña" name="editarPass" id="editarPass">
                 <small id="passwordHelpBlock" class="form-text text-muted">
                   La contraseña debe de ser mayor a 5 caracteres, puede llevar caracteres especiales
                 </small>
@@ -258,8 +264,8 @@
             <!-- Entrada para el nivel de acceso del usuario -->
             <div class="form-group">
               <small id="passwordHelpBlock" class="form-text text-muted">
-                  Si no desea editar tipo de usuario no elegir
-                </small>
+                Si no desea editar tipo de usuario no elegir
+              </small>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-user"></i></span>
@@ -268,16 +274,16 @@
                   <option id="editarTipo">Elegir tipo de usuario</option>
                   <?php  
 
-                    $item = null;
-                    $valor = null;
+                  $item = null;
+                  $valor = null;
 
-                    $tipoUsuario = ControladorUsuarios::ctrMostrarTipoUsuarios($item,$valor);
-                    
-                    foreach ($tipoUsuario as $key => $value) {
-                      echo '<option value="'.$value["id_tipo_usuario"].'">'.$value["tipo"].'</option>';
-                    }
+                  $tipoUsuario = ControladorUsuarios::ctrMostrarTipoUsuarios($item,$valor);
 
-                   ?>
+                  foreach ($tipoUsuario as $key => $value) {
+                    echo '<option value="'.$value["id_tipo_usuario"].'">'.$value["tipo"].'</option>';
+                  }
+
+                  ?>
                 </select>
               </div>
             </div>
@@ -319,8 +325,8 @@
 </div>
 
 <?php 
-  
-  $eliminarUsuario = new ControladorUsuarios();
-  $eliminarUsuario -> ctrEliminarUsuario();
 
- ?>
+$eliminarUsuario = new ControladorUsuarios();
+$eliminarUsuario -> ctrEliminarUsuario();
+
+?>
