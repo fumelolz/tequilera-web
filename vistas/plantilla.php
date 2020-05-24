@@ -58,73 +58,79 @@
         $_GET["ruta"] == "insumos" ||
         $_GET["ruta"] == "pedidos-proveedor" ||
         $_GET["ruta"] == "transferencia-insumos") {
-         // Content
-        include "modulos/".$_GET["ruta"].".php"; 
+
+        if ($_SESSION["tipo"] == 1) {
+          include "modulos/".$_GET["ruta"].".php"; 
+        }else{
+          include "modulos/403.php";
+        }
+        
+
+      }else{
+        include "modulos/404.php";
+      }
     }else{
-      include "modulos/404.php";
+      include "modulos/home.php";
     }
+
+
+    include "modulos/footer.php";
+
+    echo '
+    </div>
+    <!-- ./wrapper -->';
+
+
   }else{
-    include "modulos/home.php";
+  //login
+    include "modulos/login.php";
   }
 
 
-  include "modulos/footer.php";
 
-  echo '
-  </div>
-  <!-- ./wrapper -->';
-
-
-}else{
-  //login
-  include "modulos/login.php";
-}
-
-
-
-?>
+  ?>
 
   
 
 
 
-<!-- jQuery -->
-<script src="vistas/plugins/jquery/jquery.min.js"></script>
-<script src="vistas/js/jquery.datetimepicker.full.js"></script>
-<!-- Bootstrap 4 -->
-<script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="vistas/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="vistas/dist/js/demo.js"></script>
-<!-- DataTables -->
-<script src="vistas/plugins/datatables/jquery.dataTables.js"></script>
-<script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-<script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
+  <!-- jQuery -->
+  <script src="vistas/plugins/jquery/jquery.min.js"></script>
+  <script src="vistas/js/jquery.datetimepicker.full.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="vistas/dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="vistas/dist/js/demo.js"></script>
+  <!-- DataTables -->
+  <script src="vistas/plugins/datatables/jquery.dataTables.js"></script>
+  <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+  <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.js"></script>
 
-<!-- Js Perzonalizado -->
-<script src="vistas/js/moment.js"></script>
-<script src="vistas/js/plantilla.js"></script>
-<?php 
+  <!-- Js Perzonalizado -->
+  <script src="vistas/js/moment.js"></script>
+  <script src="vistas/js/plantilla.js"></script>
+  <?php 
 
-if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
+  if(isset($_SESSION["logged"]) && $_SESSION["logged"] == "ok"){
 
-  if (isset($_GET["ruta"])) {
-    if ($_GET["ruta"] == "usuarios" ||
-      $_GET["ruta"] == "clientes" ||
-      $_GET["ruta"] == "productos" ||
-      $_GET["ruta"] == "proveedores" ||
-      $_GET["ruta"] == "crear-venta" ||
-      $_GET["ruta"] == "almacenes" ||
-      $_GET["ruta"] == "orden-produccion" ||
-      $_GET["ruta"] == "historial-orden-produccion" ||
-      $_GET["ruta"] == "insumos" ||
-      $_GET["ruta"] == "pedidos-proveedor" ||
-      $_GET["ruta"] == "transferencia-insumos") {
-      
-      echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
+    if (isset($_GET["ruta"])) {
+      if ($_GET["ruta"] == "usuarios" ||
+        $_GET["ruta"] == "clientes" ||
+        $_GET["ruta"] == "productos" ||
+        $_GET["ruta"] == "proveedores" ||
+        $_GET["ruta"] == "crear-venta" ||
+        $_GET["ruta"] == "almacenes" ||
+        $_GET["ruta"] == "orden-produccion" ||
+        $_GET["ruta"] == "historial-orden-produccion" ||
+        $_GET["ruta"] == "insumos" ||
+        $_GET["ruta"] == "pedidos-proveedor" ||
+        $_GET["ruta"] == "transferencia-insumos") {
+
+        echo '<script src="vistas/js/'.$_GET["ruta"].'.js"></script>';
+    }
   }
-}
 }
 
 ?>
