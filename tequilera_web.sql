@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-05-2020 a las 20:44:48
+-- Tiempo de generación: 01-06-2020 a las 00:30:25
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.3
 
@@ -87,7 +87,9 @@ INSERT INTO `detail_orden_prod` (`id_orden`, `id_producto`, `cantidad`) VALUES
 (7, 4, 12),
 (8, 2, 1),
 (8, 4, 2),
-(8, 7, 3);
+(8, 7, 3),
+(9, 2, 10),
+(10, 15, 100);
 
 -- --------------------------------------------------------
 
@@ -150,22 +152,32 @@ INSERT INTO `detail_t_producto` (`id_producto`, `id_transf_producto`, `cantidad`
 (1, 31, 60),
 (1, 32, 50),
 (1, 33, 10),
+(1, 34, 150),
+(1, 35, 5),
+(1, 36, 25),
+(1, 37, 200),
+(1, 38, 1),
 (2, 3, 30),
 (2, 4, 28),
 (2, 20, 2),
 (3, 30, 600),
 (3, 31, 60),
 (3, 32, 50),
+(3, 34, 100),
+(3, 38, 1),
 (4, 7, 90),
 (4, 8, 40),
 (4, 21, 50),
 (5, 30, 800),
+(5, 34, 50),
+(5, 38, 3),
 (6, 5, 5),
 (6, 6, 90),
 (6, 22, 95),
 (6, 24, 650),
 (6, 26, 650),
 (6, 30, 150),
+(6, 38, 4),
 (8, 1, 22),
 (8, 2, 10),
 (8, 23, 12),
@@ -175,6 +187,7 @@ INSERT INTO `detail_t_producto` (`id_producto`, `id_transf_producto`, `cantidad`
 (8, 28, 80),
 (8, 29, 10),
 (8, 30, 90),
+(8, 38, 1),
 (10, 30, 500),
 (14, 9, 50),
 (14, 23, 50);
@@ -230,7 +243,18 @@ INSERT INTO `detail_venta` (`id_venta`, `id_producto`, `cantidad`) VALUES
 (27, 3, 60),
 (28, 1, 50),
 (28, 3, 50),
-(29, 1, 10);
+(29, 1, 10),
+(30, 1, 150),
+(30, 3, 100),
+(30, 5, 50),
+(31, 1, 5),
+(32, 1, 25),
+(33, 1, 200),
+(46, 1, 1),
+(46, 3, 1),
+(46, 5, 3),
+(46, 6, 4),
+(46, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -288,7 +312,9 @@ INSERT INTO `orden_produccion` (`id_orden_produccion`, `fecha`, `fecha_entrega`,
 (5, '2020-04-21', '2020-04-26', 18, 1),
 (6, '2020-04-21', '2020-04-23', 18, 1),
 (7, '2020-04-23', '2020-04-25', 18, 1),
-(8, '2020-04-23', '2020-04-25', 18, 1);
+(8, '2020-04-23', '2020-04-25', 18, 1),
+(9, '2020-05-01', '2020-05-16', 18, 1),
+(10, '2020-05-13', '2020-05-15', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -370,7 +396,7 @@ INSERT INTO `phone_persona` (`id_phone`, `telefono`, `celular`, `id_persona`) VA
 (2, '7621013591', '1659626291', 17),
 (3, '1234567896', '1561181681', 17),
 (4, '681816818181', '651681681818', 17),
-(6, '123181818', '123456', 4),
+(6, '28282', '22222', 4),
 (7, '1234567890', '6515165', 4),
 (9, '681861861181', '65161658168', 4),
 (18, '121212', '123123', 9),
@@ -399,7 +425,7 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `descripcion`, `presentacion`, `precio`, `img`) VALUES
 (1, 'Río negro blanco', '750ml', '200', 'vistas/img/productos/Río negro blanco/493.jpg'),
-(2, 'Río negro reposado', '750ml', '250', 'vistas/img/productos/Río negro reposado/793.jpg'),
+(2, 'Río negro reposado', '750ml', '250', 'vistas/img/productos/Río negro reposado/550.jpg'),
 (3, 'Querida', '750ml', '250', NULL),
 (4, 'Malquerida', '750ml', '300', NULL),
 (5, 'Real del sur', '750ml', '100', NULL),
@@ -411,7 +437,8 @@ INSERT INTO `producto` (`id_producto`, `descripcion`, `presentacion`, `precio`, 
 (11, 'Crema de agave/ Especial', '250ml', '200', NULL),
 (12, 'adwawda', '950 ml', '8946', NULL),
 (13, 'Majin Vegueta', 'Muneco 3D', '3500', 'vistas/img/productos/Majin Vegueta/680.jpg'),
-(14, 'LOL', 'LOL', '50', 'vistas/img/productos/LOL/401.jpg');
+(14, 'LOL', 'LOL', '50', 'vistas/img/productos/LOL/401.jpg'),
+(15, 'Coca Nordica', '600ml', '13', 'vistas/img/productos/Coca Nordica/433.jpg');
 
 -- --------------------------------------------------------
 
@@ -500,15 +527,16 @@ CREATE TABLE `transferencia_insumo` (
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   `movimiento` int(11) DEFAULT NULL,
-  `almacen` int(11) DEFAULT NULL
+  `almacen` int(11) DEFAULT NULL,
+  `estado` tinyint(2) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `transferencia_insumo`
 --
 
-INSERT INTO `transferencia_insumo` (`id_transf_insumo`, `fecha`, `hora`, `movimiento`, `almacen`) VALUES
-(1, '2020-03-09', '15:33:00', 3, 2);
+INSERT INTO `transferencia_insumo` (`id_transf_insumo`, `fecha`, `hora`, `movimiento`, `almacen`, `estado`) VALUES
+(1, '2020-03-09', '15:33:00', 3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -561,7 +589,12 @@ INSERT INTO `transferencia_producto` (`id_transf_producto`, `fecha`, `hora`, `cl
 (30, '2020-04-19', '18:04:12', 3, 1),
 (31, '2020-04-19', '18:31:28', 4, 1),
 (32, '2020-04-19', '22:27:39', 4, 1),
-(33, '2020-04-27', '17:14:40', 4, 1);
+(33, '2020-04-27', '17:14:40', 4, 1),
+(34, '2020-05-01', '16:01:50', 4, 1),
+(35, '2020-05-09', '12:00:04', 4, 1),
+(36, '2020-05-09', '13:44:06', 4, 1),
+(37, '2020-05-13', '20:09:20', 4, 1),
+(38, '2020-05-25', '21:34:07', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -607,13 +640,13 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `usuario`, `passwd`, `tipo`, `img`, `estado`, `ultimo_login`, `fecha`) VALUES
 (5, 'Raul Perez Escobedo', 'grast', 'zevur', 1, '', 0, '0000-00-00 00:00:00', '2020-04-19 18:44:28'),
-(10, 'Fabian Marquez Gonzalez', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 1, '', 1, '2020-04-27 17:12:56', '2020-04-27 17:12:56'),
+(10, 'Fabian Marquez Gonzalez', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 1, '', 1, '2020-05-25 21:32:35', '2020-05-25 21:32:35'),
 (12, 'Yolanda Urcina Macedo', 'yolanda', 'yolanda', 1, 'vistas/img/usuarios/yolanda/108.jpg', 1, '2020-03-11 09:17:46', '2020-04-16 17:39:58'),
-(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-05-01 12:38:15', '2020-05-01 12:38:15'),
+(18, 'Daniel Magadan', 'magadan', '$2a$07$asxx54ahjppf45sd87a5auwDZV/O0xJK5flkiwHhlt67Y6PNnE4Cq', 1, 'vistas/img/usuarios/magadan/348.png', 1, '2020-05-24 13:38:18', '2020-05-24 13:38:18'),
 (20, 'Faustino Magadan', 'faustino', '$2a$07$asxx54ahjppf45sd87a5auMnvguyEG4TUXMS0lgfGS8BokSElr81e', 2, NULL, 1, '2020-03-14 14:44:45', '2020-04-16 17:39:57'),
-(22, 'Juan Carlos Magadan', 'ironman32', '$2a$07$asxx54ahjppf45sd87a5auGD.G7H8Smda9QuzdEJEiZ.SRUJDwAN.', 1, 'vistas/img/usuarios/ironman32/693.jpg', 1, NULL, '2020-04-16 17:39:55'),
 (23, 'Rodrigo Sandoval Gonzalez', 'rodrigosik', '$2a$07$asxx54ahjppf45sd87a5auFL5K1.Cmt9ZheoVVuudOi5BCi10qWly', 1, 'vistas/img/usuarios/rodrigosik/999.png', 1, '2020-04-16 17:39:45', '2020-04-16 17:39:45'),
-(24, 'Iker Fabian Magadan Perez', 'venom', '$2a$07$asxx54ahjppf45sd87a5auX1pSUlfscFiemWnW3k2difm5XwuWeIG', 1, 'vistas/img/usuarios/venom/365.png', 1, NULL, '2020-04-19 18:30:14');
+(24, 'Iker Fabian Magadan Perez', 'venom', '$2a$07$asxx54ahjppf45sd87a5auX1pSUlfscFiemWnW3k2difm5XwuWeIG', 1, 'vistas/img/usuarios/venom/365.png', 1, NULL, '2020-04-19 18:30:14'),
+(25, 'Jesus Montes', 'operativo', '$2a$07$asxx54ahjppf45sd87a5auvfzmro/rh5bdASTnisYZjgXS8mYzn9y', 2, 'vistas/img/usuarios/operativo/785.png', 1, '2020-05-24 13:38:24', '2020-05-24 13:38:25');
 
 -- --------------------------------------------------------
 
@@ -665,7 +698,24 @@ INSERT INTO `venta` (`id_venta`, `id_usuario`, `id_cliente`, `fecha`, `hora`, `i
 (26, 18, 5, '2020-04-19', '14:08:09', 16, '2000', '2320'),
 (27, 18, 7, '2020-04-19', '18:31:28', 16, '27000', '31320'),
 (28, 18, 8, '2020-04-19', '22:27:39', 16, '22500', '26100'),
-(29, 10, 8, '2020-04-27', '17:14:40', 16, '2000', '2320');
+(29, 10, 8, '2020-04-27', '17:14:40', 16, '2000', '2320'),
+(30, 18, 7, '2020-05-01', '16:01:50', 20, '60000', '72000'),
+(31, 18, 5, '2020-05-09', '12:00:04', 16, '1000', '1160'),
+(32, 18, 5, '2020-05-09', '13:44:06', 16, '5000', '5800'),
+(33, 18, 6, '2020-05-13', '20:09:20', 16, '40000', '46400'),
+(34, 18, 5, '2020-01-01', '15:04:09', 16, '500', '600'),
+(35, 18, 6, '2020-02-05', '04:01:07', 16, '600', '700'),
+(36, 18, 4, '2020-03-12', '08:00:00', 16, '500', '600'),
+(37, 18, 4, '2020-06-03', '07:03:00', 16, '500', '600'),
+(38, 18, 7, '2020-07-10', '06:06:00', 16, '9000', '9000'),
+(39, 18, 4, '2020-08-13', '17:00:00', 16, '8000', '8000'),
+(40, 18, 5, '2020-09-10', '12:07:00', 16, '8000', '9000'),
+(41, 18, 5, '2020-10-09', '10:05:00', 16, '8000', '9000'),
+(42, 18, 5, '2020-12-11', '08:04:04', 16, '8000', '9000'),
+(43, 18, 5, '2020-01-08', '12:00:00', 16, '150000', '160000'),
+(44, 18, 4, '2020-11-12', '08:35:00', 16, '100000', '102000'),
+(45, 18, 5, '2020-11-10', '05:27:45', 16, '8000000', '8000000'),
+(46, 10, 5, '2020-05-25', '21:34:07', 16, '1350', '1566');
 
 --
 -- Índices para tablas volcadas
@@ -850,7 +900,7 @@ ALTER TABLE `insumo`
 -- AUTO_INCREMENT de la tabla `orden_produccion`
 --
 ALTER TABLE `orden_produccion`
-  MODIFY `id_orden_produccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_orden_produccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
@@ -874,7 +924,7 @@ ALTER TABLE `phone_persona`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
@@ -910,7 +960,7 @@ ALTER TABLE `transferencia_insumo`
 -- AUTO_INCREMENT de la tabla `transferencia_producto`
 --
 ALTER TABLE `transferencia_producto`
-  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_transf_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `unidad`
@@ -922,13 +972,13 @@ ALTER TABLE `unidad`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Restricciones para tablas volcadas

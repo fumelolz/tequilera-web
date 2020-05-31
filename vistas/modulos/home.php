@@ -106,7 +106,7 @@ $ventaMes = ControladorVentas::ctrMostrarVentasMes();
                   </div>
                 </div>
                 <div class="card-body">
-                  <canvas id="myChart" width="200" height="200"></canvas>
+                  <canvas id="myChart" width="200" height="150"></canvas>
                 </div>
               </div>
               <!-- /.card -->
@@ -120,7 +120,7 @@ $ventaMes = ControladorVentas::ctrMostrarVentasMes();
                   </div>
                 </div>
                 <div class="card-body">
-                  <canvas id="productosMasVendidos" width="200" height="200"></canvas>
+                  <canvas id="productosMasVendidos" width="200" height="150"></canvas>
                 </div>
               </div>
               <!-- /.card -->

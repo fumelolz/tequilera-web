@@ -1,4 +1,4 @@
-<?php
+ <?php  
 
 class ControladorProductos{
 
@@ -248,7 +248,7 @@ class ControladorProductos{
 					}//Fin Editar Foto
 
 					$tabla = "producto";
-
+ 
 					$datos = array('id_producto'=>$_POST["editarIdProducto"],
 								   'presentacion' => $_POST["editarPresentacion"],
 								   'precio' => $_POST["editarPrecio"],

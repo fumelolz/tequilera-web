@@ -46,6 +46,7 @@ $.ajax({
     processData: false,
     dataType: "json",
     success: function(reply){
+        console.log("reply", reply);
 
         for (var i = 0; i < reply.length; i++) {
             datos[i] = reply[i]["total"]
